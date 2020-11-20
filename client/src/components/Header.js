@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ReactComponent as Logo } from "../assets/Logo.svg";
-import { ReactComponent as Bag } from "../assets/Bag.svg";
+import { ReactComponent as BasketIcon } from "../assets/BasketIcon.svg";
 import { changeCurrency, setSort } from "../reducers/goods";
 
 const EUR = "EUR";
@@ -21,8 +21,11 @@ const Header = () => {
     history.push(`/`);
   };
 
+  const goToBasketPage = () => {
+    history.push(`/basket`);
+  };
+
   const sortList = (sortMethod) => {
-    console.log(sortMethod);
     setSortButtonClicked(!sortButtonClicked);
     return dispatch(setSort(sortMethod, sortButtonClicked));
   };
@@ -78,8 +81,11 @@ const Header = () => {
               {CAD}
             </button>
           </div>
-          <div className="cursor-pointer px-1 py-1 leading-none text-white rounded hover:text-purple-600 hover:bg-white mt-4 lg:mt-0">
-            <Bag />
+          <div
+            onClick={goToBasketPage}
+            className="cursor-pointer px-1 py-1 leading-none text-white rounded hover:text-purple-600 hover:bg-white mt-4 lg:mt-0"
+          >
+            <BasketIcon />
           </div>
         </div>
       </nav>

@@ -5,6 +5,7 @@ import { createBrowserHistory } from "history";
 import store from "./store";
 import { Provider } from "react-redux"
 import Header from "./components/Header"
+import BasketPage from "./pages/BasketPage";
 
 function App() {
   const history = createBrowserHistory();
@@ -18,6 +19,9 @@ function App() {
             <Switch>
               <Route exact path="/">
                 <HomePage />
+              </Route>
+              <Route exact path="/basket">
+                <BasketPage />
               </Route>
             </Switch>
           </div>

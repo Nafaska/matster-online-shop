@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllGoods } from "../reducers/goods";
-import { ReactComponent as AddToBag } from "../assets/AddToBag.svg";
+import { addToBasket } from "../reducers/basket";
+import { ReactComponent as AddToBasketIcon } from "../assets/AddToBasketIcon.svg";
 
 const AllGoods = () => {
   const dispatch = useDispatch();
@@ -16,22 +17,23 @@ const AllGoods = () => {
 
   return (
     <div className="flex flex-wrap">
-      {allGoodslist.map((it) => {
-        const convertedPrice = it.price * rate;
+      {allGoodslist.map((product) => {
+        const convertedPrice = product.price * rate;
         return (
           <div
-            key={it.id}
+            key={product.id}
             className="flex justify-between px-2 pt-4 items-end flex-col flex-auto w-2/5 items-center overflow-hidden w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5"
           >
-            <img src={it.image} alt={it.title} className="rounded" />
-            <div className="font-bold text-gray-700 py-2">{it.title}</div>
+            <img src={product.image} alt={product.title} className="rounded" />
+            <div className="font-bold text-gray-700 py-2">{product.title}</div>
             <div className="flex text-gray-600 self-stretch font-semibold text-sm justify-between items-center">
               {convertedPrice.toFixed(2)} {currency}
               <button
                 title="Add to Bag"
                 className="bg-gray-500 text-white hover:bg-pink-500 rounded py-1 px-2"
+                onClick={() => dispatch(addToBasket(product))}
               >
-                <AddToBag />
+                <AddToBasketIcon />
               </button>
             </div>
           </div>
