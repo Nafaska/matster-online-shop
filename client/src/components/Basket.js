@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteFromBasket, changeQuantity } from "../reducers/basket";
 
@@ -10,11 +10,13 @@ const Basket = () => {
   const currency = useSelector((callback) => callback.goods.currency);
 
   const deleteItem = (item) => {
-    console.log(dispatch(deleteFromBasket(item)));
     return dispatch(deleteFromBasket(item));
   };
 
   const updateQuantity = (item, amount) => {
+    if (item.quantity <= 1 && amount <= 1) {
+      return dispatch(deleteFromBasket(item));
+    }
     return dispatch(changeQuantity(item, amount));
   };
 
@@ -29,10 +31,9 @@ const Basket = () => {
             <div className="font-bold text-gray-700 ml-8 w-2/5">{it.title}</div>
             <div className="flex flex-row space-x-6">
               <div className="flex flex-row space-x-3">
-                <text className="font-medium">Quantity:</text>
+                <p className="font-medium">Quantity:</p>
                 <button
                   className="bg-gray-500 text-white hover:bg-pink-500 font-bold rounded py-1 px-3"
-                  disabled={it.quantity <= 1}
                   onClick={() => updateQuantity(it, it.quantity - 1)}
                 >
                   -

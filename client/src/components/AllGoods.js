@@ -10,6 +10,19 @@ const AllGoods = () => {
   const allGoodslist = useSelector((callback) => callback.goods.list);
   const currency = useSelector((callback) => callback.goods.currency);
   const rate = useSelector((callback) => callback.goods.rate);
+  const basket = useSelector((callback) => callback.basket.items);
+
+  const addedProductQuantity = (product) => {
+    return basket.map((item) => {
+      if (typeof item.quantity !== "undefined" && item.id === product.id) {
+        return item.quantity;
+      }
+    });
+  };
+
+  const addToBasketButton = (product) => {
+    return dispatch(addToBasket(product));
+  };
 
   useEffect(() => {
     dispatch(getAllGoods());
@@ -28,13 +41,14 @@ const AllGoods = () => {
             <div className="font-bold text-gray-700 py-2">{product.title}</div>
             <div className="flex text-gray-600 self-stretch font-semibold text-sm justify-between items-center">
               {convertedPrice.toFixed(2)} {currency}
-              <button
-                title="Add to Bag"
-                className="bg-gray-500 text-white hover:bg-pink-500 rounded py-1 px-2"
-                onClick={() => dispatch(addToBasket(product))}
-              >
-                <AddToBasketIcon />
-              </button>
+                <button
+                  title="Add to Bag"
+                  className="bg-gray-500 text-white hover:bg-pink-500 flex flex-row items-center rounded py-2 px-2"
+                  onClick={() => addToBasketButton(product)}
+                >
+                  {addedProductQuantity(product)}
+                  <AddToBasketIcon />
+                </button>
             </div>
           </div>
         );

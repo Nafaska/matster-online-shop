@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { ReactComponent as Logo } from "../assets/Logo.svg";
 import { ReactComponent as BasketIcon } from "../assets/BasketIcon.svg";
 import { changeCurrency, setSort } from "../reducers/goods";
@@ -14,6 +14,7 @@ const PRICE = "price";
 const Header = () => {
   const history = useHistory();
   const [sortButtonClicked, setSortButtonClicked] = useState(false);
+  const totalCount = useSelector((callback) => callback.basket.count);
 
   const dispatch = useDispatch();
 
@@ -81,12 +82,22 @@ const Header = () => {
               {CAD}
             </button>
           </div>
-          <div
-            onClick={goToBasketPage}
-            className="cursor-pointer px-1 py-1 leading-none text-white rounded hover:text-purple-600 hover:bg-white mt-4 lg:mt-0"
-          >
-            <BasketIcon />
-          </div>
+          {totalCount > 0 ? (
+            <button
+              onClick={goToBasketPage}
+              className="cursor-pointer flex flex-row items-center px-2 py-2 leading-none text-white bg-green-400 rounded hover:text-purple-600 hover:bg-white mt-4 lg:mt-0"
+            >
+              {totalCount}
+              <BasketIcon />
+            </button>
+          ) : (
+            <button
+              onClick={goToBasketPage}
+              className="cursor-pointer px-1 py-1 leading-none text-white rounded hover:text-purple-600 hover:bg-white mt-4 lg:mt-0"
+            >
+              <BasketIcon />
+            </button>
+          )}
         </div>
       </nav>
     </div>
