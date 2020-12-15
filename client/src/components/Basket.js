@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteFromBasket, changeQuantity } from "../reducers/basket";
 
@@ -19,6 +20,18 @@ const Basket = () => {
     }
     return dispatch(changeQuantity(item, amount));
   };
+
+  useEffect(() => {
+    axios({
+      method: "post",
+      url: "http://localhost:5000/api/v1/logs",
+      data: {
+        time: +new Date(),
+        action: `navigate to ${window.location.pathname} page`,
+      },
+    });
+    return () => {};
+  }, []);
 
   return (
     <div>

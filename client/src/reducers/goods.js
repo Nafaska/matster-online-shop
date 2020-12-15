@@ -2,7 +2,7 @@ import axios from "axios";
 
 const GET_ALL_GOODS = "GET_ALL_GOODS";
 const CHANGE_CURRENCY = "CHANGE_CURRENCY";
-const SORT_BY_NAME = "SORT_BY_NAME";
+const SORT_BY = "SORT_BY";
 const USD = "USD";
 
 const initialState = {
@@ -26,7 +26,7 @@ export default (state = initialState, action) => {
         currency: action.data,
         rate: action.rate,
       };
-    case SORT_BY_NAME:
+    case SORT_BY:
       let arr = [...state.list];
       let sortedList = sortBy(arr, action.method);
       if (state.order) {
@@ -34,7 +34,7 @@ export default (state = initialState, action) => {
           ...state,
           list: sortedList.reverse(),
           method: action.method,
-          order: action.order
+          order: action.order,
         };
       } else {
         return {
@@ -62,7 +62,7 @@ export function getAllGoods() {
 }
 
 export function changeCurrency(currency) {
-  return (dispatch) => {
+  return (dispatch, getState) => {
     axios.get("http://localhost:5000/api/v1/rates").then(({ data }) => {
       dispatch({
         type: CHANGE_CURRENCY,
@@ -70,10 +70,22 @@ export function changeCurrency(currency) {
         data: currency,
       });
     });
+    const store = getState();
+    const { currency: oldCurrency } = store.goods;
+    const logsData = {
+      time: +new Date(),
+      action: `change currency from ${oldCurrency} to ${currency}`,
+    };
+    axios.post("http://localhost:5000/api/v1/logs", logsData);
   };
 }
 
 const sortBy = (data, method) => {
+  const logsData = {
+    time: +new Date(),
+    action: `sort by ${method}`,
+  };
+  axios.post("http://localhost:5000/api/v1/logs", logsData);
   return data.sort((a, b) => {
     if (a[method] > b[method]) {
       return 1;
@@ -87,7 +99,7 @@ const sortBy = (data, method) => {
 
 export function setSort(method, order) {
   return {
-    type: SORT_BY_NAME,
+    type: SORT_BY,
     method: method,
     order: !order,
   };

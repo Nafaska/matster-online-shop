@@ -1,3 +1,4 @@
+import axios from "axios";
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getAllGoods } from "../reducers/goods";
@@ -25,7 +26,16 @@ const AllGoods = () => {
   };
 
   useEffect(() => {
+    axios({
+      method: "post",
+      url: "http://localhost:5000/api/v1/logs",
+      data: {
+        time: +new Date(),
+        action: `navigate to ${window.location.pathname} page`,
+      },
+    });
     dispatch(getAllGoods());
+    return () => {};
   }, [dispatch]);
 
   return (
@@ -41,14 +51,14 @@ const AllGoods = () => {
             <div className="font-bold text-gray-700 py-2">{product.title}</div>
             <div className="flex text-gray-600 self-stretch font-semibold text-sm justify-between items-center">
               {convertedPrice.toFixed(2)} {currency}
-                <button
-                  title="Add to Bag"
-                  className="bg-gray-500 text-white hover:bg-pink-500 flex flex-row items-center rounded py-2 px-2"
-                  onClick={() => addToBasketButton(product)}
-                >
-                  {addedProductQuantity(product)}
-                  <AddToBasketIcon />
-                </button>
+              <button
+                title="Add to Bag"
+                className="bg-gray-500 text-white hover:bg-pink-500 flex flex-row items-center rounded py-2 px-2"
+                onClick={() => addToBasketButton(product)}
+              >
+                {addedProductQuantity(product)}
+                <AddToBasketIcon />
+              </button>
             </div>
           </div>
         );

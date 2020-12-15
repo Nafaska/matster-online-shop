@@ -6,10 +6,10 @@ import createRootReducer from "./reducers";
 const middleware = [thunk];
 const initialState = {};
 
-
 const composeFunc =
   process.env.NODE_ENV === "development" ? composeWithDevTools : compose;
 const composedEnchanters = composeFunc(applyMiddleware(...middleware));
+
 const store = createStore(
   createRootReducer(),
   initialState,
