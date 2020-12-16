@@ -19,20 +19,19 @@ if (!isNaN(parseInt(localStorage.getItem("count"), 10))) {
   };
 }
 
-  const updateItems = (existed, toAdd) => {
-    const foundItems = existed.filter((item) => item.id === toAdd.id);
-
-    const shouldAdd = foundItems.length === 0;
-    if (shouldAdd) {
-      toAdd.priceOveral = toAdd.price;
-      toAdd.quantity = 1;
-      return [...existed, toAdd];
-    } else {
-      foundItems[0].quantity += 1;
-      foundItems[0].priceOveral = foundItems[0].price * foundItems[0].quantity;
-      return [...existed];
-    }
-  };
+const updateItems = (existed, toAdd, rate) => {
+  const foundItems = existed.filter((item) => item.id === toAdd.id);
+  const shouldAdd = foundItems.length === 0;
+  if (shouldAdd) {
+    toAdd.priceOveral = toAdd.price;
+    toAdd.quantity = 1;
+    return [...existed, toAdd];
+  } else {
+    foundItems[0].quantity += 1;
+    foundItems[0].priceOveral = foundItems[0].price * foundItems[0].quantity;
+    return [...existed];
+  }
+};
 
 const calculateTotalPrice = (items) => {
   return items.reduce((acc, rec) => {
@@ -76,7 +75,7 @@ export default (state = initialState, action) => {
         ...state,
       };
     case ADD_TO_BASKET:
-      const addedItems = updateItems(state.items, action.items);
+      const addedItems = updateItems(state.items, action.items, state.rate);
       newState = {
         ...state,
         items: addedItems,

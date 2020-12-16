@@ -5,12 +5,27 @@ const CHANGE_CURRENCY = "CHANGE_CURRENCY";
 const SORT_BY = "SORT_BY";
 const USD = "USD";
 
-const initialState = {
+let initialState = {
   list: [],
   rate: 1,
   currency: USD,
   method: "",
   order: false,
+};
+
+if (!isNaN(parseInt(localStorage.getItem("rate"), 10))) {
+  initialState = {
+    rate: parseFloat(localStorage.getItem("rate")),
+    currency: JSON.parse(localStorage.getItem("currency")),
+    method: "",
+    order: false,
+    list: []
+  }
+}
+
+const saveCurrencyToLocalStorage = (state) => {
+  localStorage.setItem("rate", JSON.stringify(state.rate));
+  localStorage.setItem("currency", JSON.stringify(state.currency));
 };
 
 export default (state = initialState, action) => {
@@ -21,11 +36,13 @@ export default (state = initialState, action) => {
         list: action.list,
       };
     case CHANGE_CURRENCY:
-      return {
+      const newState = {
         ...state,
         currency: action.data,
         rate: action.rate,
       };
+      saveCurrencyToLocalStorage(newState);
+      return newState;
     case SORT_BY:
       let arr = [...state.list];
       let sortedList = sortBy(arr, action.method);

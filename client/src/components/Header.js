@@ -20,10 +20,6 @@ const Header = () => {
 
   const dispatch = useDispatch();
 
-  // const goToBasketPage = () => {
-  //   history.push(`/basket`);
-  // };
-
   const sortList = (sortMethod) => {
     setSortButtonClicked(!sortButtonClicked);
     return dispatch(setSort(sortMethod, sortButtonClicked));

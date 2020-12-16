@@ -9,6 +9,7 @@ const Basket = () => {
   const items = useSelector((callback) => callback.basket.items);
   const totalPrice = useSelector((callback) => callback.basket.totalPrice);
   const currency = useSelector((callback) => callback.goods.currency);
+  const rate = useSelector((callback) => callback.goods.rate);
 
   const deleteItem = (item) => {
     return dispatch(deleteFromBasket(item));
@@ -60,7 +61,7 @@ const Basket = () => {
                 </button>
               </div>
               <div className="font-medium">
-                {it.priceOveral} {currency}
+                {(it.priceOveral * rate).toFixed(2)} {currency}
               </div>
               <button
                 className="bg-gray-500 text-white hover:bg-pink-500 font-bold	rounded py-1 px-2"
@@ -73,7 +74,7 @@ const Basket = () => {
         ))
       )}
       <div className="font-bold text-gray-900 pl-4 pt-4">
-        Total {totalPrice} {currency}
+        Total {(totalPrice * rate).toFixed(2)} {currency}
       </div>
     </div>
   );
