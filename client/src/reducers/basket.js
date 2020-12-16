@@ -4,6 +4,7 @@ const ADD_TO_BASKET = "ADD_TO_BASKET";
 const DELETE_FROM_BASKET = "DELETE_FROM_BASKET";
 const CHANGE_QUANTITY = "CHANGE_QUANTITY";
 const GET_ITEMS_FROM_BASKET = "GET_ITEMS_FROM_BASKET";
+const SORT_BY = "SORT_BY";
 
 let initialState = {
   items: [],
