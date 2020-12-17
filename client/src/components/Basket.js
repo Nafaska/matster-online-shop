@@ -40,35 +40,43 @@ const Basket = () => {
         items.map((it) => (
           <div
             key={it.id}
-            className="flex flex-row relative mt-4 text-gray-700"
+            className="flex md:flex-row border-b-2 relative my-3 pb-3 text-gray-700 flex-col"
           >
-            <div className="font-bold text-gray-700 ml-8 w-2/5">{it.title}</div>
-            <div className="flex flex-row space-x-6">
-              <div className="flex flex-row space-x-3">
-                <p className="font-medium">Quantity:</p>
+            <div className="font-bold text-gray-700 ml-8 md:w-2/5">
+              {it.title}
+            </div>
+            <div className="flex flex-row space-x-3 md:space-x-6 md:w-3/5 md:mr-4 mx-8">
+              <div className="flex flex-row space-x-3 w-1/2">
+                <p className="font-light md:text-base text-sm md:font-medium">
+                  Quantity:
+                </p>
                 <button
-                  className="bg-gray-500 text-white hover:bg-pink-500 font-bold rounded py-1 px-3"
+                  className="bg-gray-500 text-white hover:bg-pink-500 md:font-bold font-normal rounded md:py-1 md:px-3 py-0.5 px-1"
                   onClick={() => updateQuantity(it, it.quantity - 1)}
                 >
                   -
                 </button>
-                <div className="font-medium">{it.quantity}</div>
+                <div className="md:w-8 w-6 text-center	font-light md:font-medium">
+                  {it.quantity}
+                </div>
                 <button
-                  className="bg-gray-500 text-white hover:bg-pink-500 font-medium rounded py-1 px-3"
+                  className="bg-gray-500 text-white md:text-base text-sm hover:bg-pink-500 font-light md:font-medium rounded md:py-1 md:px-3 py-0.5 px-1"
                   onClick={() => updateQuantity(it, it.quantity + 1)}
                 >
                   +
                 </button>
               </div>
-              <div className="font-medium">
-                {(it.priceOveral * rate).toFixed(2)} {currency}
+              <div className="flex w-1/2 flex-row justify-end space-x-3">
+                <div className="text-center md:text-base text-sm font-light md:font-medium">
+                  {(it.priceOveral * rate).toFixed(2)} {currency}
+                </div>
+                <button
+                  className="bg-gray-500 text-white md:text-base text-sm hover:bg-pink-500 md:font-bold font-medium rounded md:py-1 md:px-2 py-0.5 px-1"
+                  onClick={() => deleteItem(it)}
+                >
+                  Delete
+                </button>
               </div>
-              <button
-                className="bg-gray-500 text-white hover:bg-pink-500 font-bold	rounded py-1 px-2"
-                onClick={() => deleteItem(it)}
-              >
-                Delete
-              </button>
             </div>
           </div>
         ))
