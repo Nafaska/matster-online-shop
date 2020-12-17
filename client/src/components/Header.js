@@ -25,7 +25,7 @@ const Header = () => {
             matster
           </span>
         </Link>
-        <div className="w-full flex justify-end lg:flex lg:items-center lg:w-auto">
+        <div className="w-full flex justify-end sm:flex sm:items-center sm:w-auto">
           {location.pathname === "/" ? <SortButtons /> : <></>}
           {location.pathname === "/" || location.pathname === "/basket" ? (
             <CurrencyButtons />
@@ -35,7 +35,7 @@ const Header = () => {
           {typeof totalCount !== "undefined" && totalCount > 0 ? (
             <Link
               to="/basket"
-              className="cursor-pointer flex flex-row items-center px-2 py-2 leading-none text-white bg-green-400 rounded hover:text-purple-600 hover:bg-white mt-4 lg:mt-0"
+              className="cursor-pointer flex flex-row items-center px-2 py-2 leading-none text-white bg-green-400 rounded hover:text-purple-600 hover:bg-white"
             >
               {totalCount}
               <BasketIcon />
@@ -43,7 +43,7 @@ const Header = () => {
           ) : (
             <Link
               to="/basket"
-              className="cursor-pointer px-1 py-1 leading-none text-white rounded hover:text-purple-600 hover:bg-white mt-4 lg:mt-0"
+              className="cursor-pointer px-1 py-1 leading-none text-white rounded hover:text-purple-600 hover:bg-white mt-4 sm:mt-0"
             >
               <BasketIcon />
             </Link>

@@ -16,16 +16,16 @@ const SortButtons = () => {
   };
 
   return (
-    <div className="text-sm lg:flex-grow">
+    <div className="text-sm sm:flex-grow">
       <button
         onClick={() => sortList(NAME)}
-        className="block mt-4 lg:inline-block lg:mt-0 text-white mr-4"
+        className="block lg:mt-1 lg:inline-block text-white mr-4"
       >
-        Sort By Name {sortButtonClicked ? "Z→A" : "A→Z"}
+        Sort by Name {sortButtonClicked ? "Z→A" : "A→Z"}
       </button>
       <button
         onClick={() => sortList(PRICE)}
-        className="block mt-4 lg:inline-block lg:mt-0 text-white mr-4"
+        className="block lg:mt-1 lg:inline-block text-white mr-4"
       >
         Sort by Price {sortButtonClicked ? "High→Low" : "Low→High"}
       </button>
