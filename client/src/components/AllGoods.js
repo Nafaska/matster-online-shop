@@ -14,11 +14,11 @@ const AllGoods = () => {
   const basket = useSelector((callback) => callback.basket.items);
 
   const addedProductQuantity = (product) => {
-    return basket.map((item) => {
-      if (typeof item.quantity !== "undefined" && item.id === product.id) {
-        return item.quantity;
-      }
-    });
+    return basket
+      .filter(
+        (item) => typeof item.quantity !== "undefined" && item.id === product.id
+      )
+      .map((item) => item.quantity);
   };
 
   const addToBasketButton = (product) => {
@@ -45,7 +45,7 @@ const AllGoods = () => {
         return (
           <div
             key={product.id}
-            className="flex justify-between px-2 pt-4 items-end flex-col flex-auto w-2/5 items-center overflow-hidden w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5"
+            className="flex justify-between px-2 pb-1 pt-4 items-end flex-col flex-auto w-2/5 items-center overflow-hidden w-full sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/5"
           >
             <img src={product.image} alt={product.title} className="rounded" />
             <div className="font-bold text-gray-700 py-2">{product.title}</div>

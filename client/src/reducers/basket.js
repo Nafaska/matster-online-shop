@@ -4,7 +4,7 @@ const ADD_TO_BASKET = "ADD_TO_BASKET";
 const DELETE_FROM_BASKET = "DELETE_FROM_BASKET";
 const CHANGE_QUANTITY = "CHANGE_QUANTITY";
 const GET_ITEMS_FROM_BASKET = "GET_ITEMS_FROM_BASKET";
-const SORT_BY = "SORT_BY";
+// const SORT_BY = "SORT_BY";
 
 let initialState = {
   items: [],
@@ -68,7 +68,7 @@ const saveStateToLocalStorage = (state) => {
   localStorage.setItem("totalPrice", JSON.stringify(state.totalPrice));
 };
 
-export default (state = initialState, action) => {
+const basket = (state = initialState, action) => {
   let newState;
   switch (action.type) {
     case GET_ITEMS_FROM_BASKET:
@@ -151,3 +151,5 @@ export function getItemsFromBasket() {
     type: GET_ITEMS_FROM_BASKET,
   };
 }
+
+export default basket;

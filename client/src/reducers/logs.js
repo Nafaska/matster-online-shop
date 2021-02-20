@@ -5,7 +5,7 @@ const initialState = {
   listOfLogs: [],
 };
 
-export default (state = initialState, action) => {
+const logs = (state = initialState, action) => {
   switch (action.type) {
     case GET_LOGS: {
       return {
@@ -28,3 +28,5 @@ export function getAllLogs() {
     });
   };
 }
+
+export default logs;

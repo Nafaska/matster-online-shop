@@ -28,7 +28,7 @@ const saveCurrencyToLocalStorage = (state) => {
   localStorage.setItem("currency", JSON.stringify(state.currency));
 };
 
-export default (state = initialState, action) => {
+const goods = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_GOODS:
       return {
@@ -121,3 +121,5 @@ export function setSort(method, order) {
     order: !order,
   };
 }
+
+export default goods;

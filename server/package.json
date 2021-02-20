@@ -1,5 +1,6 @@
 {
   "name": "e-commerce-server",
+  "license": "UNLICENSED",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -24,7 +25,14 @@
   },
   "babel": {
     "presets": [
-      "@babel/preset-env"
+      [
+        "@babel/preset-env",
+        {
+          "targets": {
+            "node": true
+          }
+        }
+      ]
     ]
   }
 }
