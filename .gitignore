@@ -10,6 +10,7 @@ client/node_modules/
 server/dist/
 client/dist/
 data/logs.json
+client/build/
 
 # testing
 /coverage

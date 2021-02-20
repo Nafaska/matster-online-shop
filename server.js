@@ -5,10 +5,13 @@ import bodyParser from "body-parser";
 import cookieParser from "cookie-parser";
 import axios from "axios";
 
+require("dotenv").config();
+
 const { readFile, unlink, writeFile } = require("fs").promises;
 
 const app = express();
-const port = 5000;
+
+app.use(express.static(path.join(__dirname, "../client/build")));
 
 const middleware = [
   cors(),
@@ -110,6 +113,10 @@ app.delete("/api/v1/logs", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
+});
+
+app.listen(process.env.PORT, () => {
+  console.log(`Example app listening at http://localhost:${process.env.PORT}`);
 });
