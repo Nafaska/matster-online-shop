@@ -11,7 +11,7 @@ const { readFile, unlink, writeFile } = require("fs").promises;
 
 const app = express();
 
-app.use(express.static(path.join(__dirname, "/client/build")));
+app.use(express.static(path.join(__dirname, "../client/build")));
 
 const middleware = [
   cors(),
@@ -112,9 +112,9 @@ app.delete("/api/v1/logs", async (req, res) => {
     res.status(404).send("file is already deleted");
   }
 });
-
+console.log(">>>>", process.cwd());
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "/client/build/index.html"));
+  res.sendFile(path.join(__dirname, "../client/build/index.html"));
 });
 
 app.listen(process.env.PORT, () => {

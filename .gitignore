@@ -7,7 +7,7 @@
 
 server/node_modules/
 client/node_modules/
-server/dist/
+dist/
 client/dist/
 data/logs.json
 client/build/

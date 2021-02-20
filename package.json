@@ -17,6 +17,7 @@
     "build": "babel ./server.js --out-dir ./dist",
     "start": "node ./dist/server",
     "start:dev": "NODE_ENV=development npm-run-all build start",
+    "heroku-postbuild": "yarn build && cd client && yarn && yarn run build",
     "start:watch": "nodemon --exec babel-node ./server.js"
   },
   "devDependencies": {
