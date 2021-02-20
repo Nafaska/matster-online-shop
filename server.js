@@ -27,7 +27,7 @@ middleware.forEach((it) => app.use(it));
 const readFileData = async (res) => {
   let obj;
   try {
-    const text = await readFile(`${__dirname}/../data/logs.json`, {
+    const text = await readFile(`${__dirname}/data/logs.json`, {
       encoding: "utf8",
     });
     obj = JSON.parse(text);
@@ -39,7 +39,7 @@ const readFileData = async (res) => {
 
 app.get("/api/v1/goods", async (req, res) => {
   try {
-    const listOfGoods = await readFile(`${__dirname}/../data/goods.json`, {
+    const listOfGoods = await readFile(`${__dirname}/data/goods.json`, {
       encoding: "utf8",
     });
     res.json(JSON.parse(listOfGoods));
@@ -80,7 +80,7 @@ app.post("/api/v1/logs", async (req, res) => {
     const existedData = await readFileData();
     if (typeof existedData === "undefined") {
       await writeFile(
-        `${__dirname}/../data/logs.json`,
+        `${__dirname}/data/logs.json`,
         JSON.stringify([req.body]),
         {
           encoding: "utf8",
@@ -88,7 +88,7 @@ app.post("/api/v1/logs", async (req, res) => {
       );
     } else {
       await writeFile(
-        `${__dirname}/../data/logs.json`,
+        `${__dirname}/data/logs.json`,
         JSON.stringify([...existedData, req.body]),
         {
           encoding: "utf8",
@@ -103,7 +103,7 @@ app.post("/api/v1/logs", async (req, res) => {
 
 app.delete("/api/v1/logs", async (req, res) => {
   try {
-    await unlink(`${__dirname}/../data/logs.json`);
+    await unlink(`${__dirname}/data/logs.json`);
     res.status(200).send("file deleted");
   } catch (err) {
     res.status(404).send("file is already deleted");
