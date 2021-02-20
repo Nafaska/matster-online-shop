@@ -20,7 +20,7 @@ const logs = (state = initialState, action) => {
 
 export function getAllLogs() {
   return (dispatch) => {
-    axios.get("http://localhost:5000/api/v1/logs").then(({ data }) => {
+    axios.get("/api/v1/logs").then(({ data }) => {
       dispatch({
         type: GET_LOGS,
         listOfLogs: data,

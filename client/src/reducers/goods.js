@@ -69,7 +69,7 @@ const goods = (state = initialState, action) => {
 
 export function getAllGoods() {
   return (dispatch) => {
-    axios.get("http://localhost:5000/api/v1/goods").then(({ data }) => {
+    axios.get("/api/v1/goods").then(({ data }) => {
       dispatch({
         type: GET_ALL_GOODS,
         list: data,
@@ -80,7 +80,7 @@ export function getAllGoods() {
 
 export function changeCurrency(currency) {
   return (dispatch, getState) => {
-    axios.get("http://localhost:5000/api/v1/rates").then(({ data }) => {
+    axios.get("api/v1/rates").then(({ data }) => {
       dispatch({
         type: CHANGE_CURRENCY,
         rate: data.rates[currency],
@@ -93,7 +93,7 @@ export function changeCurrency(currency) {
       time: +new Date(),
       action: `change currency from ${oldCurrency} to ${currency}`,
     };
-    axios.post("http://localhost:5000/api/v1/logs", logsData);
+    axios.post("/api/v1/logs", logsData);
   };
 }
 
@@ -102,7 +102,7 @@ const sortBy = (data, method) => {
     time: +new Date(),
     action: `sort by ${method}`,
   };
-  axios.post("http://localhost:5000/api/v1/logs", logsData);
+  axios.post("/api/v1/logs", logsData);
   return data.sort((a, b) => {
     if (a[method] > b[method]) {
       return 1;

@@ -4,7 +4,6 @@ const ADD_TO_BASKET = "ADD_TO_BASKET";
 const DELETE_FROM_BASKET = "DELETE_FROM_BASKET";
 const CHANGE_QUANTITY = "CHANGE_QUANTITY";
 const GET_ITEMS_FROM_BASKET = "GET_ITEMS_FROM_BASKET";
-// const SORT_BY = "SORT_BY";
 
 let initialState = {
   items: [],
@@ -119,7 +118,7 @@ export function addToBasket(data) {
     time: +new Date(),
     action: `add ${data.title} to the backet`,
   };
-  axios.post("http://localhost:5000/api/v1/logs", logsData);
+  axios.post("/api/v1/logs", logsData);
   return {
     type: ADD_TO_BASKET,
     items: data,
@@ -131,7 +130,7 @@ export function deleteFromBasket(toDelete) {
     time: +new Date(),
     action: `remove ${toDelete.title} from the backet`,
   };
-  axios.post("http://localhost:5000/api/v1/logs", logsData);
+  axios.post("/api/v1/logs", logsData);
   return {
     type: DELETE_FROM_BASKET,
     toDelete,
