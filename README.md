@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+# `Matster`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Online food store. All goods can be sorted by name or price. By default, all goods prices are displayed in USD but can be converted to EUR or SEK by the latest rate of exchange. All goods can be added to the basket page - /basket. All user's navigation is recorded to the logs page - /logs.
 
-## Available Scripts
+Deployed to Heroku: https://matster.herokuapp.com. Deployment to Heroku is triggered each time a new commit is pushed to the main branch. 
 
-In the project directory, you can run:
+## Technologies and libraries used: 
 
-### `yarn start`
+ - Server - [Node](https://nodejs.org), [Express](https://expressjs.com)
+ - Data is stored on server filesystem in JSON files
+ - Client Framework - [React](https://reactjs.org), [Redux](https://redux.js.org)
+ - Styles - [Tailwind CSS](https://tailwindcss.com)
+ - 3rd party API used - [Exchange Rate](https://exchangeratesapi.io)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Architecture: 
+<img src="./docs/ReadmeImages/ArchitectureDiagram.png" title="Architecture Diagram">
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Implementation specifics: 
+- Logs are stored in the filesystem and the file size isn’t limited.
+- One image used for all goods.
+- User management is out of scope, the application works in “single user mode”.
+- Payment and orders are not implemented.
 
-### `yarn test`
+## Planned Improvements:
+- Pagination.
+- Limit logs file size.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Main interaction scenarios as GIFs:
+<img src="./docs/ReadmeImages/AddingGoodsToBasket.gif" title="Adding Goods To Basket">
+<img src="./docs/ReadmeImages/SortingGoods.gif" title="Sorting Goods">
 
-### `yarn build`
+## Screenshots:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Desktop (macOS, Chrome):
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+<p float="left">
+  <img src="./docs/ReadmeImages/Basket.png" width="49%" height="450" title="Basket">
+  <img src="./docs/ReadmeImages/Logs.png" width="49%" height="450" title="Logs">
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+</p>
+<p float="left">
+  <img src="./docs/ReadmeImages/AllGoodsSmallResolution.png" width="49%" title="All Goods Small Resolution">
+  <img src="./docs/ReadmeImages/AllGoodMediumResolution.png" title="All Goods Medium Resolution"/> 
+  <img src="./docs/ReadmeImages/AllGoodsHighResolution.png" title="All Goods High Resolution"/>
+</p>
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### Mobile (iOS, Chrome):
+<p float="left">
+  <img src="./docs/ReadmeImages/AllGoodsMobile.jpg" height="600" title="All Goods"/>
+  <img src="./docs/ReadmeImages/BasketMobile.jpg" height="600" title="Basket"/> 
+</p>
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
