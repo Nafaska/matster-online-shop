@@ -23,7 +23,7 @@ const Logs = () => {
   return (
     <div>
       {Object.values(listOfLogs).map((log) => (
-        <div>
+        <div className="ml-2 mt-2">
           <code key={log.time}>
             {new Date(log.time).toLocaleString()} - {log.action}
           </code>
