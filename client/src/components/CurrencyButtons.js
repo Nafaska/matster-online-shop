@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 
 const USD = "USD";
 const EUR = "EUR";
-const CAD = "CAD";
+const SEK = "SEK";
 
 const CurrencyButtons = () => {
   const dispatch = useDispatch();
@@ -28,10 +28,10 @@ const CurrencyButtons = () => {
         {EUR}
       </button>
       <button
-        onClick={() => changeCurrencyOnClick(CAD)}
+        onClick={() => changeCurrencyOnClick(SEK)}
         className="block sm:mt-1 sm:inline-block text-white mr-4"
       >
-        {CAD}
+        {SEK}
       </button>
     </div>
   );

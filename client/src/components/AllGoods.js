@@ -28,7 +28,7 @@ const AllGoods = () => {
   useEffect(() => {
     axios({
       method: "post",
-      url: "http://localhost:5000/api/v1/logs",
+      url: "/api/v1/logs",
       data: {
         time: +new Date(),
         action: `navigate to ${window.location.pathname} page`,
